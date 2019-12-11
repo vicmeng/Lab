@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.bcu.ls.mapper.ReportMapper">
+
+
+	<insert id="insertReport"
+		parameterType="cn.edu.bcu.ls.entity.Report">
+		insert into report (o_id,r_content,e_state) values
+		('${o_id}','${r_content}','${e_state}')
+	</insert>
+
+</mapper>

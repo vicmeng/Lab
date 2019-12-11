@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.bcu.ls.mapper.OrderMapper">
+
+
+	<insert id="insertOrder"
+		parameterType="cn.edu.bcu.ls.entity.Order">
+		insert into orders (o_name,o_state,c_id,l_id,p_state)
+		values ('${o_name}','${o_state}','${c_id}','${l_id}','${p_state}')
+	</insert>
+
+	<update id="updateOrderByIdWithState"
+		parameterType="cn.edu.bcu.ls.entity.Order">
+		update orders set o_state=#{o_state} where o_id=#{o_id}
+	</update>
+
+	<update id="insertPayByOid"
+		parameterType="cn.edu.bcu.ls.entity.Order">
+		update orders set p_way=#{p_way},p_money=#{p_money}
+		where o_id=#{o_id}
+	</update>
+
+	<select id="getOrderByOid" parameterType="int"
+		resultMap="report">
+		SELECT
+		orders.o_id,orders.o_name,customer.c_name,customer.c_number,customer.c_type
+		FROM orders,customer
+		WHERE orders.c_id=customer.c_id and orders.o_id=#{o_id}
+	</select>
+
+	<select id="queryAllOrderByState"
+		resultType="cn.edu.bcu.ls.entity.Order" parameterType="String">
+		SELECT * FROM
+		orders WHERE o_state =#{o_state}
+	</select>
+
+	<select id="queryPayByOid"
+		resultType="cn.edu.bcu.ls.entity.Order" parameterType="int">
+		SELECT
+		p_way,p_money,p_state FROM orders WHERE o_id=#{o_id}
+	</select>
+
+	<resultMap type="cn.edu.bcu.ls.entity.Order" id="report">
+		<id property="o_id" column="o_id" />
+		<result property="o_name" column="o_name" />
+		<association property="customer"
+			javaType="cn.edu.bcu.ls.entity.Customer">
+			<result property="c_name" column="c_name" />
+			<result property="c_number" column="c_number" />
+			<result property="c_type" column="c_type" />
+		</association>
+	</resultMap>
+
+</mapper>
