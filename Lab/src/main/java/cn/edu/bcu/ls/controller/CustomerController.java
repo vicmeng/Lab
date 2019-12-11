@@ -29,7 +29,7 @@ public class CustomerController {
 	private CustomerService sustomerService;
 
 	@PostMapping(value = "queryCustomer")
-	public Customer queryCustomer(@RequestParam(value = "c_number", required = false) String c_number) {
+	public Customer queryCustomer( @RequestParam(value = "c_number", required = false) @Valid String c_number) {
 		Customer customer = sustomerService.getCustomer(c_number);
 		if (customer != null) {
 			return customer;
@@ -39,12 +39,12 @@ public class CustomerController {
 	}
 
 	@PostMapping(value = "insertCustomer")
-	public boolean insertCustomer(Customer customer) {
+	public boolean insertCustomer(@Valid Customer customer) {
 		return sustomerService.insertCustomer(customer);
 	}
 
 	@PutMapping(value = "updataCustomer")
-	public boolean updataCustomer(Customer customer) {
+	public boolean updataCustomer(@Valid Customer customer) {
 		return sustomerService.updataCustomer(customer);
 	}
 }

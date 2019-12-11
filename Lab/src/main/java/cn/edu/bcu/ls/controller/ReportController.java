@@ -5,6 +5,7 @@ import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -41,13 +42,13 @@ public class ReportController {
 	public void exportExcel(HttpServletRequest request, HttpServletResponse response, int o_id) {
 
 		Order order = orderService.getOrderByOid(o_id);
-		System.out.println(order);
+		
 
 		ExcelExportController.excel(request, response, order);
 	}
 
 	@PostMapping("/insterReport")
-	public boolean loadExport(Report report, @RequestParam("file") MultipartFile file,
+	public boolean loadExport(@Valid Report report, @RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
 		report.setR_content(LoadController.upload(file, request));

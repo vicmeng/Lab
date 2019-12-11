@@ -1,55 +1,29 @@
 package cn.edu.bcu.ls.entity;
 
+
+
+import javax.validation.constraints.NotNull;
+
+import cn.edu.bcu.ls.PhoneNumber;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * 
  * @author 李硕
  *
  */
+@Data
+@NoArgsConstructor
 public class Customer {
 	private int c_id = -1;
+	@NotNull(message = "c_name 不能为空")
 	private String c_name;
+	@NotNull(message = "c_type 不能为空")
 	private String c_type;
+	@PhoneNumber(message = "phoneNumber 格式不正确")
+	@NotNull(message = "phoneNumber 不能为空")
 	private String c_number;
 
-	public Customer() {
-		super();
-	}
-
-	public int getC_id() {
-		return c_id;
-	}
-
-	public void setC_id(int c_id) {
-		this.c_id = c_id;
-	}
-
-	public String getC_name() {
-		return c_name;
-	}
-
-	public void setC_name(String c_name) {
-		this.c_name = c_name;
-	}
-
-	public String getC_type() {
-		return c_type;
-	}
-
-	public void setC_type(String c_type) {
-		this.c_type = c_type;
-	}
-
-	public String getC_number() {
-		return c_number;
-	}
-
-	public void setC_number(String c_number) {
-		this.c_number = c_number;
-	}
-
-	@Override
-	public String toString() {
-		return "Customer [c_id=" + c_id + ", c_name=" + c_name + ", c_type=" + c_type + ", c_number=" + c_number + "]";
-	}
-
+	
 }
