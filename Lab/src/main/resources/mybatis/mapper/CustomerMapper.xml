@@ -23,4 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		c_name=#{c_name},c_type=#{c_type},c_number=#{c_number} where
 		c_id=#{c_id}
 	</update>
+
+	<delete id="deleteCustomerById" parameterType="String">
+		delete from
+		customer where c_number=#{c_number}
+	</delete>
+
 </mapper>

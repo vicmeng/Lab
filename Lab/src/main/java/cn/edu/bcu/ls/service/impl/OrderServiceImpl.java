@@ -48,15 +48,27 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Order> queryAllOrderByState(String o_state) {
+	public List<Order> queryAllOrderByState(String o_state,String l_id) {
 		// TODO Auto-generated method stub
-		return orderMapper.queryAllOrderByState(o_state);
+		return orderMapper.queryAllOrderByState(o_state,l_id);
 	}
 
 	@Override
 	public Order queryPayByOid(int o_id) {
 		// TODO Auto-generated method stub
 		return orderMapper.queryPayByOid(o_id);
+	}
+
+	@Override
+	public boolean updataPayState(Order order) {
+		// TODO Auto-generated method stub
+		return orderMapper.updataPayState(order);
+	}
+
+	@Override
+	public Order queryOrder(Integer o_id) {
+		// TODO Auto-generated method stub
+		return orderMapper.queryOrder(o_id);
 	}
 
 }

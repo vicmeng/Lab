@@ -12,4 +12,6 @@ public interface CustomerMapper {
 	boolean insertCustomer(Customer customer);
 
 	boolean updataCustomer(Customer customer);
+	
+	boolean deleteCustomerById(String c_number);
 }

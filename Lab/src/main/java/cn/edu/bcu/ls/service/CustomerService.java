@@ -12,4 +12,6 @@ public interface CustomerService {
 	boolean insertCustomer(Customer customer);
 
 	boolean updataCustomer(Customer customer);
+	
+	boolean deleteCustomerById(String c_number);
 }

@@ -37,7 +37,14 @@ public class ReportController {
 
 	@Autowired
 	private ReportService reportService;
-
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param o_id
+	 * 生成报告模板
+	 */
 	@GetMapping("/exportExcel")
 	public void exportExcel(HttpServletRequest request, HttpServletResponse response, int o_id) {
 
@@ -46,7 +53,14 @@ public class ReportController {
 
 		ExcelExportController.excel(request, response, order);
 	}
-
+	/**
+	 * 
+	 * @param report
+	 * @param file
+	 * @param redirectAttributes
+	 * @param request
+	 * @return 上传完整报告并修改委托单状态
+	 */
 	@PostMapping("/insterReport")
 	public boolean loadExport(@Valid Report report, @RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {

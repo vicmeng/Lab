@@ -39,4 +39,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerMapper.updataCustomer(customer);
 	}
 
+	@Override
+	public boolean deleteCustomerById(String c_number) {
+		// TODO Auto-generated method stub
+		return customerMapper.deleteCustomerById(c_number);
+	}
+
 }

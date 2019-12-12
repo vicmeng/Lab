@@ -3,6 +3,7 @@ package cn.edu.bcu.ls.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,7 +28,11 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService sustomerService;
-
+	/**
+	 * 
+	 * @param c_number
+	 * @return 查看用户
+	 */
 	@PostMapping(value = "queryCustomer")
 	public Customer queryCustomer( @RequestParam(value = "c_number", required = false) @Valid String c_number) {
 		Customer customer = sustomerService.getCustomer(c_number);
@@ -37,14 +42,27 @@ public class CustomerController {
 		return new Customer();
 
 	}
-
+	/**
+	 * 
+	 * @param customer
+	 * @return 添加用户
+	 */
 	@PostMapping(value = "insertCustomer")
 	public boolean insertCustomer(@Valid Customer customer) {
 		return sustomerService.insertCustomer(customer);
 	}
-
+	/**
+	 * 
+	 * @param customer
+	 * @return 修改用户信息
+	 */
 	@PutMapping(value = "updataCustomer")
 	public boolean updataCustomer(@Valid Customer customer) {
 		return sustomerService.updataCustomer(customer);
+	}
+	
+	@DeleteMapping(value ="deleteCustomerById")
+	public boolean deleteCustomerById(String c_number) {
+		return sustomerService.deleteCustomerById(c_number);
 	}
 }

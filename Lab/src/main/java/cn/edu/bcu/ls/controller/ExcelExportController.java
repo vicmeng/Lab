@@ -1,6 +1,7 @@
 package cn.edu.bcu.ls.controller;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,8 @@ public class ExcelExportController {
 		try {
 			String filePath = "static/报告模板.xls";
 			ClassPathResource cpr = new ClassPathResource(filePath);
-			HSSFWorkbook wb = new HSSFWorkbook(new FileInputStream(cpr.getFile()));
+			InputStream inputStream = cpr.getInputStream();
+			HSSFWorkbook wb = new HSSFWorkbook(inputStream);
 
 			// 根据页面index 获取sheet页
 

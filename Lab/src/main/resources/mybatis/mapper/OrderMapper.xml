@@ -27,13 +27,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 		orders.o_id,orders.o_name,customer.c_name,customer.c_number,customer.c_type
 		FROM orders,customer
-		WHERE orders.c_id=customer.c_id and orders.o_id=#{o_id}
+		WHERE orders.c_id=customer.c_id and
+		orders.o_id=#{o_id}
 	</select>
 
 	<select id="queryAllOrderByState"
 		resultType="cn.edu.bcu.ls.entity.Order" parameterType="String">
 		SELECT * FROM
-		orders WHERE o_state =#{o_state}
+		orders
+		<where>
+			<if test="o_state !=-1"> and o_state =#{o_state}</if>
+			<if test="l_id !=-1"> and l_id =#{l_id}</if>
+		</where>
+		
+	</select>
+
+	<select id="queryOrder" resultType="cn.edu.bcu.ls.entity.Order"
+		parameterType="int">
+		SELECT * FROM
+		orders WHERE o_id =#{o_id}
 	</select>
 
 	<select id="queryPayByOid"
@@ -41,6 +53,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 		p_way,p_money,p_state FROM orders WHERE o_id=#{o_id}
 	</select>
+
+	<update id="updataPayState"
+		parameterType="cn.edu.bcu.ls.entity.Order">
+		update orders set p_state=#{p_state}
+		where
+		o_id=#{o_id}
+	</update>
+
+
 
 	<resultMap type="cn.edu.bcu.ls.entity.Order" id="report">
 		<id property="o_id" column="o_id" />
