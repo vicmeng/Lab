@@ -62,7 +62,7 @@ public class ReportController {
 	 * @return 上传完整报告并修改委托单状态
 	 */
 	@PostMapping("/insterReport")
-	public boolean loadExport(@Valid Report report, @RequestParam("file") MultipartFile file,
+	public boolean loadExport( Report report, @RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
 		report.setR_content(LoadController.upload(file, request));
@@ -72,5 +72,11 @@ public class ReportController {
 		order.setO_state("4");
 
 		return orderService.updateOrderByIdWithState(order);
+	}
+	
+	@GetMapping("/getReprot")
+	public void getReprot(HttpServletRequest request, HttpServletResponse response, int r_id) throws Exception {
+		String r_content = reportService.getReprot(r_id);
+		DownloadLocal.downloadLocal(request,response,r_content);
 	}
 }

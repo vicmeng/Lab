@@ -1,5 +1,7 @@
 package cn.edu.bcu.ls.service.impl;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +29,12 @@ public class ReportServiceImpl implements ReportService {
 		// TODO Auto-generated method stub
 
 		return reportMapper.insertReport(report);
+	}
+
+	@Override
+	public String getReprot(int r_id) {
+		// TODO Auto-generated method stub
+		return reportMapper.getReprot(r_id);
 	}
 
 }

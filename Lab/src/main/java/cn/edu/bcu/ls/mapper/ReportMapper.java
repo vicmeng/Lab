@@ -8,4 +8,5 @@ import cn.edu.bcu.ls.entity.Report;
  */
 public interface ReportMapper {
 	Boolean insertReport(Report report);
+	String getReprot(int r_id);
 }

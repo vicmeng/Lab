@@ -1,5 +1,7 @@
 package cn.edu.bcu.ls.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import cn.edu.bcu.ls.entity.Report;
 
 /**
@@ -9,4 +11,5 @@ import cn.edu.bcu.ls.entity.Report;
  */
 public interface ReportService {
 	Boolean insertReport(Report report);
+	String getReprot(int r_id);
 }

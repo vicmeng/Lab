@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.bcu.ls.mapper.AdministratorMapper">
+
+
+	<insert id="insertAdministrator"
+		parameterType="cn.edu.bcu.ls.entity.Administrator">
+		insert into administrator
+		(a_account,a_password,a_type,a_name) values
+		('${a_account}','${a_password}','${a_type}','${a_name}')
+	</insert>
+
+<!-- 
+	<select id="queryAllAdministrator" 
+		resultType="cn.edu.bcu.ls.entity.Administrator">
+		select * from administrator
+	</select>
+	 -->
+	
+	
+	<select id="queryAllAdministrator" parameterType="String"
+		resultType="cn.edu.bcu.ls.entity.Administrator">
+		select * from administrator <if test="a_type >0"> where a_type=#{a_type}</if>
+	</select>
+
+	<update id="updateAdministratorById"
+		parameterType="cn.edu.bcu.ls.entity.Administrator">
+		update administrator set
+		a_account=#{a_account},a_password=#{a_password},a_type=#{a_type},a_name=#{a_name}
+		where
+		a_id=#{a_id}
+	</update>
+
+	<delete id="deleteAdministratorById" parameterType="int">
+		delete from
+		administrator where a_id=#{a_id}
+	</delete>
+
+</mapper>

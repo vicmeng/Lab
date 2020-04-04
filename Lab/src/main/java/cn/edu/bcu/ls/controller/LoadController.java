@@ -31,7 +31,7 @@ public class LoadController {
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
 		// 构建文件上传所要保存的"文件夹路径"--这里是相对路径，保存到项目根路径的文件夹下
-		String realPath = new String("src/main/resources/" + UPLOAD_PATH_PREFIX);
+		String realPath = new String(UPLOAD_PATH_PREFIX);
 		logger.info("-----------上传文件保存的路径【" + realPath + "】-----------");
 		String format = sdf.format(new Date());
 		// 存放上传文件的文件夹
@@ -52,8 +52,7 @@ public class LoadController {
 			File newFile = new File(file.getAbsolutePath() + File.separator + newName);
 			// 转存文件到指定路径，如果文件名重复的话，将会覆盖掉之前的文件,这里是把文件上传到 “绝对路径”
 			uploadFile.transferTo(newFile);
-			String filePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ "/uploadFile/" + format + newName;
+			String filePath =  realPath + format + newName;
 			logger.info("-----------【" + filePath + "】-----------");
 			return filePath;
 		} catch (Exception e) {

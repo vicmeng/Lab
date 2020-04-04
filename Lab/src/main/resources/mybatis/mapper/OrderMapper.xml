@@ -36,8 +36,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM
 		orders
 		<where>
-			<if test="o_state !=-1"> and o_state =#{o_state}</if>
-			<if test="l_id !=-1"> and l_id =#{l_id}</if>
+			<if test="o_state >0"> and o_state =#{o_state}</if>
+			<if test="l_id >0"> and l_id =#{l_id}</if>
 		</where>
 		
 	</select>

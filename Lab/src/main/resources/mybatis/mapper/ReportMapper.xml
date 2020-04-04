@@ -7,8 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertReport"
 		parameterType="cn.edu.bcu.ls.entity.Report">
-		insert into report (o_id,r_content,e_state) values
-		('${o_id}','${r_content}','${e_state}')
+		insert into report(o_id,r_content,e_state) values
+		(#{o_id},#{r_content},#{e_state})
 	</insert>
-
+	
+	<select id="getReprot" parameterType="int" resultType="String">
+		select r_content from report where r_id=#{r_id}
+	</select>
+	
 </mapper>
